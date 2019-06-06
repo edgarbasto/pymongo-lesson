@@ -64,3 +64,19 @@ two_data = [
 
 col.insert_many(two_data)
 '''
+
+
+col.find_one_and_update({'pessoas': 'Ana Lee'}, {'$set': {'pessoas.$[element]': 'Princesa'}}, { 'arrayFilters': [ { 'element': 'Ana Lee'} ]} )
+col.find_one_and_update({'pessoas': 'Ana Lee'}, {'$set': {'pessoas.$': 'Princesa'}})
+
+
+
+col.aggregate([{'$group':{ 'comida':{'comida': 'carne'}, 'total':{'$sum': {'$sum': '$comida.carne.value'}}}}])
+col.aggregate([{ '$unwind': {'$group':{'_id':{'localidade':'montalegre'},'total': {'$sum': '$comida.carne'}}}}])
+
+col.find({'$or':[{'comida':'carne'},{'comida':'peixe'}]})
+
+col.aggregate([{ '$unwind': '$comida'}, { '$group':{ '_id':'$comida', 'total': {'$sum': '$comida.$'} }}])
+
+
+col.aggregate([{ '$unwind': '$comida'}, { '$group':{ '_id':'$comida', 'total': {'$sum': {'$sum': '$comida.carne.value'}} }}])
