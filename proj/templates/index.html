@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block head%}
+<title>index title</title>
+
+{% endblock %}
+
+
+{% block body%}
+<h1> teste!</h1>
+
+<ul>
+    {% for aluno in todos_alunos%}
+        <li>{{aluno.Nome}}</li>
+    {% endfor%}
+</ul>
+
+{% endblock %}
