@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+
+{% block head %}
+<title> editar! </title>
+{% endblock %}
+
+
+{% block body %}
+
+{% for xpto in object %}
+    <form action="/update" method="post">
+    <table>
+        <tr>
+            <td><input type="text" name="_id" value="{{ xpto['_id']}}" readonly></td>
+            <td><input type="text" name="name" id="" value="{{ xpto.name }}"></td>
+            <td><input type="date" name="date" id="" value="{{ xpto.date }}"></td>
+            <td><input type="text" name="place" id="" value="{{ xpto.place }}"></td>
+        </tr>
+    </table>
+{% endfor %}
+    <button type="submit">Update</button>
+
+    </form>
+
+{% endblock %}
+

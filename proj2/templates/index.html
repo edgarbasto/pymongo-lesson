@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title> o nosso titulo! </title>
+
+{% endblock %}
+
+
+{% block body %}
+
+<table class="table table-striped custab">
+    <td>Nome:</td>
+    <td>Data:</td>
+    <td>Local:</td>
+    <td></td>
+    <td></td>
+    {% for festa in dados %}
+        <tr>
+            <td>{{festa.name}}</td>
+            <td>{{festa.date}}</td>
+            <td>{{festa.place}}</td>
+            <td><a class='btn btn-info btn-xs' href="./remove?_id={{ festa['_id'] }}"> del </a></td>
+            <td><a class="btn btn-danger btn-xs" href="./edit?_id={{ festa['_id'] }}"> edit </td>
+        </tr>
+    {% endfor %}
+</table>
+    
+<hr/>
+
+<form action="/add" method='POST'>
+
+    <table class="table table-striped custab">
+        <tr>Adicione uma festa:</tr>
+        <tr>
+            <td>Nome: <input type="text" name="name" id=""></td>
+            <td>Dia: <input type="date" name="date" id=""> </td>
+            <td>Place: <input type="text" name="place" id=""></td>
+            <td><button type="submit">Create</button></td>
+        </tr>
+    </table>
+
+</form>
+
+
+{% endblock %}
+
